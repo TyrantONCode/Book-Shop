@@ -5,10 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Book_Shop"
         mc:Ignorable="d"
-        Title="UserWindow" Height="450" Width="800">
+        Title="UserWindow" WindowStartupLocation="CenterScreen"
+        Background=" #fffded " Height="600" Width="400"
+        WindowStyle="None" ResizeMode="NoResize">
     <Grid>
         <Border  BorderThickness="2,2,2,2" BorderBrush="Black">
 
         </Border>
+        
+        
     </Grid>
 </Window>
