@@ -5,9 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Book_Shop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" WindowStartupLocation="CenterScreen"
+        Background=" #fffded " Height="600" Width="400"
+        WindowStyle="None" ResizeMode="NoResize">
     <Grid>
-        <TextBox TextWrapping="Wrap" Text="TextBox" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="382,120,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Border  BorderThickness="2,2,2,2" BorderBrush="Black">
+            <Button x:Name="ManagerButton" Content="MANAGER" Margin="248,256,80,298" Click="ManagerButton_Click"/>
+
+        </Border>
+        <Button Foreground="Red" Background=" White " Content="X" x:Name="ExitButton"  HorizontalAlignment="Left" Margin="379,2,0,0" VerticalAlignment="Top" Width="20" Click="ExitButton_Click"/>
+        <TextBlock Text="LOGIN TYPE " HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,109,0,0" Height="34" Width="256" TextAlignment="Center" FontSize="24"/>
+        <Button x:Name="UserButton" Content="USER" HorizontalAlignment="Left" Margin="88,258,0,0" VerticalAlignment="Top" Height="42" Width="71" Click="UserButton_Click"/>
+
     </Grid>
 </Window>
