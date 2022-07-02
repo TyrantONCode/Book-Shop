@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="UserWindow" Height="450" Width="800">
     <Grid>
-        
+        <Border  BorderThickness="2,2,2,2" BorderBrush="Black">
+
+        </Border>
     </Grid>
 </Window>
