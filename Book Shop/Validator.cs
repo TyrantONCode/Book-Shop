@@ -4,10 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace Book_Shop
 {
-    static internal class Validator
+    public static class EMethods
     {
         public static bool ValidEmail(this string email)
         {
@@ -40,7 +48,7 @@ namespace Book_Shop
             return CVVRegex.IsMatch(cvv);
         }
 
-        public static bool ValidExpirationDate(string year,string month)
+        private static bool ValidExpirationDate(string year, string month)
         {
             DateTime now = DateTime.Now;
             try
@@ -67,7 +75,7 @@ namespace Book_Shop
             }
         }
 
-        public static bool ValidCreditCardNumber(this string number)
+        private static bool ValidCreditCardNumber(string number)
         {
             // Luhn Algorithm
             if (number.Length != 16)
@@ -99,5 +107,67 @@ namespace Book_Shop
         }
 
     }
-}
+    public class User
+    {
+        public string firstName;
+        public string lastName;
+        public string password;
+        public string email;
+        public string phone;
+        public int money;
+        public List<Book> bag;
+        public List<Book> bought;
+        public List<Book> bookmarks;
+        public User(string firstName, string lastName, string password, string email, string phone)
+        {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.password = password;
+            this.email = email;
+            this.phone = phone;
+            this.money = 0;
+            this.bag = new List<Book>();
+            this.bought = new List<Book>();
+            this.bookmarks = new List<Book>();
+        }
+    }
+    public class Book
+    {
+        public string name;
+        public int price;
+        public double score;
+        public string info;
+        public int numOfVotes;
+        public Book(string name, int price, double score, string info)
+        {
+            this.name = name;
+            this.price = price;
+            this.score = score;
+            this.info = info;
+            this.numOfVotes = 0;
+        }
+        public void AddScore(double score)
+        {
+            double sum = score * numOfVotes + score;
+            numOfVotes++;
+            this.score = sum / numOfVotes;
+        }
+    }
+    public abstract class Global
+    {
+        public static void MessageInfo(string text)
+        {
+            MessageBox.Show(text, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+        public static void MessageError(string text)
+        {
+            MessageBox.Show(text, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+        public static bool MessageConfirm(string text)
+        {
+            return (MessageBox.Show(text, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes);
+        }
+        //todo: need a function for data base :
+    }
 
+}
