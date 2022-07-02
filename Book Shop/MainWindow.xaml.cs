@@ -22,7 +22,7 @@ namespace Book_Shop
     {
         public MainWindow()
         {
-            InitializeComponent();
+            
         }
     }
 }
