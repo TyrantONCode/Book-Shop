@@ -11,40 +11,34 @@ namespace Book_Shop
 {
     internal class UserDbManager
     {
-        public string firstName;
-        public string lastName;
-        public string password;
-        public string email;
-        public string phone;
-        public float money;
+
         public static string root;
         public static string connectionKey;
-        // public List<Book> bag;
-        // public List<Book> bought;
-        // public List<Book> bookmarks;
-        public static void AddData(string firstname, string lastname,string username,
+       
+        public static void AddData(string firstname, string lastname,
             string password, string email, string phone, float money)
         {
             root = Path.GetFullPath("App_Data\\UserDataBase.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
             connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
             SqlConnection conn = new SqlConnection(connectionKey);
+            string books = "";
             conn.Open();
             string command = "select max(id) + 1 from [Table]";
             SqlCommand cmd = new SqlCommand(command, conn);
             int id = Convert.ToInt32(cmd.ExecuteScalar());
-            command = "insert into [Table] values ('" + id + "','" + firstname + "','" + lastname + "','" + username + "','" + password + "','" + email + "','" + phone + "','" + money + "')";
+            command = "insert into [Table] values ('" + id + "','" + firstname + "','" + lastname + "','" + password + "','" + email + "','" + phone + "','" + money + "','"+books+"')";
             cmd = new SqlCommand(command, conn);
             cmd.ExecuteNonQuery();
             conn.Close();
         }
 
-        public static bool UserLogin(string username, string password)
+        public static bool UserLogin(string email, string password)
         {
             root = Path.GetFullPath("App_Data\\UserDataBase.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
             connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
             SqlConnection conn = new SqlConnection(connectionKey);
             conn.Open();
-            string command = "select * from [Table] where username like '"+username+"' and password like '"+password+"'";
+            string command = "select * from [Table] where email like '"+email+"' and password like '"+password+"'";
             SqlCommand cmd = new SqlCommand(command, conn);
             SqlDataReader reader = cmd.ExecuteReader();
             bool output = reader.Read();
@@ -52,22 +46,53 @@ namespace Book_Shop
             return output;
         }
 
-        public static bool ValidUsername(string username)
+        public static bool ValidLoginEmail(string email)
         {
             root = Path.GetFullPath("App_Data\\UserDataBase.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
             connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
             SqlConnection conn = new SqlConnection(connectionKey);
             conn.Open();
-            string command = "select * from [Table] where lower(username) like '"+username.ToLower()+"'";
+            string command = "select * from [Table] where email like '"+email+"'";
             SqlCommand cmd = new SqlCommand(command, conn);
             SqlDataReader reader = cmd.ExecuteReader();
             bool output = reader.Read();
             conn.Close();
-            return !output;
+            return output;
         }
 
 
+        public static string AddFavBooks(string favbookstring, int book_id)
+        {
+            if (favbookstring.Length == 0)
+            {
+                favbookstring += book_id;
+            }
+            else
+            {
+                favbookstring += $" {book_id}";
+            }
+            return favbookstring;
+        }
 
+
+        public static int[] FavBookIdList(string email)
+        {
+            root = Path.GetFullPath("App_Data\\UserDataBase.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
+            connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
+            SqlConnection conn = new SqlConnection(connectionKey);
+            conn.Open();
+            string command = "select * from [Table] where email like '" + email + "'";
+            SqlCommand cmd = new SqlCommand(command, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            string[] favbooks = reader.GetString(7).Split();
+            conn.Close();
+            int[] output = new int[favbooks.Length];
+            for (int i = 0; i < favbooks.Length; i++)
+            {
+                output[i] = int.Parse(favbooks[i]);
+            }
+            return output;
+        }
     }
 
 }

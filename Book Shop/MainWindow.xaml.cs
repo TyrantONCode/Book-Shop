@@ -31,7 +31,7 @@ namespace Book_Shop
             //    lastname_textbox.Text.ToString(), password_textbox.Text.ToString(),
             //    email_textbox.Text.ToString(), phone_textbox.Text.ToString(),
             //    float.Parse(money_textbox.Text.ToString()));
-            textblockshit.Text = UserDbManager.ValidUsername(id_textbox.Text.ToString()).ToString();
+            //textblockshit.Text = UserDbManager.ValidUsername(id_textbox.Text.ToString()).ToString();
         }
     }
 }
