@@ -114,7 +114,7 @@ namespace Book_Shop
         public string password;
         public string email;
         public string phone;
-        public int money;
+        public float money;
         public List<Book> bag;
         public List<Book> bought;
         public List<Book> bookmarks;
@@ -134,11 +134,11 @@ namespace Book_Shop
     public class Book
     {
         public string name;
-        public int price;
+        public float price;
         public double score;
         public string info;
         public int numOfVotes;
-        public Book(string name, int price, double score, string info)
+        public Book(string name, float price, double score, string info)
         {
             this.name = name;
             this.price = price;
