@@ -31,18 +31,18 @@ namespace Book_Shop
         }
         private void UserLoginSelectButton_Click(object sender, RoutedEventArgs e)
         {
-           /* UserLoginWindow window = new UserLoginWindow();
+           UserLoginWindow window = new UserLoginWindow();
             window.Show();
             this.mainWindow.Close();
-            this.Close();*/
+            this.Close();
         }
 
         private void UserSignupSelectButton_Click(object sender, RoutedEventArgs e)
         {
-           /* UserSignupWindow userSignupWindow = new UserSignupWindow();
+           UserSignupWindow userSignupWindow = new UserSignupWindow();
             userSignupWindow.Show();    
             this.mainWindow.Close();
-            this.Close();*/
+            this.Close();
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)

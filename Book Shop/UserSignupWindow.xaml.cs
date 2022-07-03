@@ -35,7 +35,7 @@ namespace Book_Shop
 
             if (!firstName.ValidName())
             {
-                Global.MessageError("ivalid first name!");
+                Global.MessageError("invalid first name!");
             }
             else if (!lastName.ValidName())
             {

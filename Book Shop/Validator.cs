@@ -48,7 +48,7 @@ namespace Book_Shop
             return CVVRegex.IsMatch(cvv);
         }
 
-        private static bool ValidExpirationDate(string year, string month)
+        public static bool ValidExpirationDate(string year, string month)
         {
             DateTime now = DateTime.Now;
             try
@@ -75,9 +75,9 @@ namespace Book_Shop
             }
         }
 
-        private static bool ValidCreditCardNumber(string number)
+        // Luhn Algorithm:
+        public static bool ValidCreditCardNumber(string number)
         {
-            // Luhn Algorithm
             if (number.Length != 16)
             {
                 return false;
