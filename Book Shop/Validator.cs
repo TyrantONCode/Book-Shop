@@ -22,32 +22,27 @@ namespace Book_Shop
             Regex validateEmailRegex = new Regex("^[a-zA-Z]{1,32}@[a-zA-Z]{1,32}[.][a-zA-Z]{1,32}$");
             return validateEmailRegex.IsMatch(email);
         }
-
         public static bool ValidName(this string name)
         {
             Regex ValidNameRegex = new Regex("^[a - zA - Z]{ 3, 32 }$");
             return ValidNameRegex.IsMatch(name);
         }
-
         public static bool ValidPhoneNumber(this string number)
         {
             Regex PhoneNumberRegex = new Regex("^09[0-9]{9}$");
             return PhoneNumberRegex.IsMatch(number);
 
         }
-
         public static bool ValidPassword(this string password)
         {
             Regex PasswordRegex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d]{8,40}$");
             return PasswordRegex.IsMatch(password);
         }
-
         public static bool ValidCVV(this string cvv)
         {
             Regex CVVRegex = new Regex("^[0-9]{3,4}$");
             return CVVRegex.IsMatch(cvv);
         }
-
         public static bool ValidExpirationDate(string year, string month)
         {
             DateTime now = DateTime.Now;
@@ -74,7 +69,6 @@ namespace Book_Shop
                 return false;
             }
         }
-
         // Luhn Algorithm:
         public static bool ValidCreditCardNumber(string number)
         {
