@@ -127,6 +127,7 @@ namespace Book_Shop
     }
     public class Book
     {
+        public int id;
         public string name;
         public float price;
         public double score;
@@ -161,7 +162,6 @@ namespace Book_Shop
         {
             return (MessageBox.Show(text, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes);
         }
-        //todo: need a function for data base :
     }
 
 }

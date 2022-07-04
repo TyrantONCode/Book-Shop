@@ -56,7 +56,7 @@ namespace Book_Shop
             else
             {
                 User user = new User(firstName, lastName, password, email, phoneNumber);
-                //todo :add to data base
+                UserDbManager.AddData(firstName, lastName, password, email, phoneNumber, 0);
                 Global.MessageInfo("new user added!");
             }
         }

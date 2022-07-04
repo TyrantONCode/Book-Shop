@@ -35,7 +35,22 @@ namespace Book_Shop
         {
             string email = this.EmailTextbox.Text;
             string password= this.PasswordTextbox.Text;
-            //todo: data base code here :
+            if (UserDbManager.ValidLoginEmail(email))
+            {
+                if(UserDbManager.UserLogin(email, password))
+                {
+
+                }
+                else
+                {
+                    Global.MessageError("invalid password!");
+                }
+                
+            }
+            else
+            {
+                Global.MessageError("invalid email!");
+            }
         }
     }
 }
