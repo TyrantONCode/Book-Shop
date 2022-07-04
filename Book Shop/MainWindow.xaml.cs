@@ -18,10 +18,34 @@ namespace Book_Shop
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
+            InitializeComponent();
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            //todo :
+           /* if (Global.MessageConfirm("Are You Sure You Want To Exit ?"))
+            {
+                this.Close();
+            }*/
+        }
+
+        private void UserButton_Click(object sender, RoutedEventArgs e)
+        {
+            //todo :
+           /* UserSignupOrLoginWindow window = new UserSignupOrLoginWindow(this);
+            this.IsEnabled = false;
+            window.Show();*/
+        }
+
+        private void ManagerButton_Click(object sender, RoutedEventArgs e)
+        {
+            //todo : open manager ui window
         }
     }
 }
