@@ -15,21 +15,13 @@ using System.Windows.Shapes;
 namespace Book_Shop
 {
     /// <summary>
-    /// Interaction logic for AdminLogin.xaml
+    /// Interaction logic for AdminWindow.xaml
     /// </summary>
-    public partial class AdminLogin : Window
+    public partial class AdminWindow : Window
     {
-        public AdminLogin()
+        public AdminWindow()
         {
             InitializeComponent();
-        }
-
-        private void ConfirmButton_Click(object sender, RoutedEventArgs e)
-        {
-            //todo : check the validity of inputs with db
-
-            AdminWindow adminWindow = new AdminWindow();
-            adminWindow.Show();
         }
     }
 }
