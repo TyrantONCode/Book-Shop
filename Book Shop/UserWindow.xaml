@@ -1,0 +1,55 @@
+﻿<Window x:Class="Book_Shop.UserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Book_Shop"
+        mc:Ignorable="d"
+        Title="UserWindow" WindowStartupLocation="CenterScreen"
+        Background=" #fffded " Height="600" Width="400"
+        WindowStyle="None" ResizeMode="NoResize">
+    <Grid>
+        <Border  BorderThickness="2,2,2,2" BorderBrush="Black">
+
+        </Border>
+
+        <TabControl BorderBrush="Aqua" FontSize="9"
+            TabStripPlacement="Top" Background=" #fffded  ">
+            <TabItem Margin="-1,-3,6,-3"  Header="CHARGE ">
+                <Grid>
+                    
+                </Grid>
+            </TabItem>
+            <TabItem Margin="-5,-3,-14,-3" Header="BAG">
+                <Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Margin="15,-3,-16,-3" Header="BOUGHT BOOKS" >
+                <Grid>
+                    
+                </Grid>
+            </TabItem>
+            <TabItem Margin="16,-3,-23,-3" Header="BUY VIP">
+                <Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Margin="23,-3,-19,-3" Header="VIEW BOOKS" >
+                <Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Margin="19,-5,-15,-1" Header="EDIT INFO" >
+                <Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Margin="16,-5,-12,-1" Header="BOOKMAARKS" >
+                <Grid>
+
+                </Grid>
+            </TabItem> 
+        </TabControl>
+    </Grid>
+</Window>

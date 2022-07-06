@@ -18,11 +18,41 @@ namespace Book_Shop
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
-            InitializeComponent();
+
+        }
+
+        private void Confirm_Click(object sender, RoutedEventArgs e)
+        {
+            //UserDbManager.AddData(id_textbox.Text.ToString(), firstname_textbox.Text.ToString(),
+            //    lastname_textbox.Text.ToString(), password_textbox.Text.ToString(),
+            //    email_textbox.Text.ToString(), phone_textbox.Text.ToString(),
+            //    float.Parse(money_textbox.Text.ToString()));
+            //textblockshit.Text = UserDbManager.ValidUsername(id_textbox.Text.ToString()).ToString();
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+           if (Global.MessageConfirm("Are You Sure You Want To Exit ?"))
+           {
+                this.Close();
+           }
+        }
+
+        private void UserButton_Click(object sender, RoutedEventArgs e)
+        {
+           UserSignupOrLoginWindow window = new UserSignupOrLoginWindow(this);
+            this.IsEnabled = false;
+            window.Show();
+        }
+
+        private void ManagerButton_Click(object sender, RoutedEventArgs e)
+        {
+            //todo : open manager ui window
         }
     }
 }
