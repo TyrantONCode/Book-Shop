@@ -35,22 +35,13 @@ namespace Book_Shop
         {
             string email = this.EmailTextbox.Text;
             string password= this.PasswordTextbox.Text;
-            if (UserDbManager.ValidLoginEmail(email))
+            if (UserDbManager.UserLogin(email, password))
             {
-                if(UserDbManager.UserLogin(email, password))
-                {
-
-                }
-                else
-                {
-                    Global.MessageError("invalid password!");
-                }
-                
+                // to do: user page open
+                Global.MessageInfo("Logged in successfully!");
+                return;
             }
-            else
-            {
-                Global.MessageError("invalid email!");
-            }
+            Global.MessageError("Invalid email or password!!");
         }
     }
 }
