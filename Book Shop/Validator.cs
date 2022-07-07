@@ -133,6 +133,7 @@ namespace Book_Shop
     }
     public class Book
     {
+        public int id;  
         public string name;
         public int price;
         public double score;

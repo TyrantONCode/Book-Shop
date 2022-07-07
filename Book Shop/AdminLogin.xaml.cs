@@ -26,15 +26,15 @@ namespace Book_Shop
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
-            //todo : check the validity of inputs with db
-
-            AdminWindow adminWindow = new AdminWindow();
-            adminWindow.Show();
             string username = UsernameTextbox.Text;
             string password = PasswordTextbox.Text;
             //todo: check if the username and password are valid with db
 
-            
+            //if valid :
+            AdminWindow adminWindow = new AdminWindow();
+            adminWindow.Show();
+            this.Close();   
+
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
