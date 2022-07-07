@@ -24,7 +24,7 @@ namespace Book_Shop
         }
         public static bool ValidName(this string name)
         {
-            Regex ValidNameRegex = new Regex("^[a - zA - Z]{ 3, 32 }$");
+            Regex ValidNameRegex = new Regex("^[a-zA-Z]{3,32}$");
             return ValidNameRegex.IsMatch(name);
         }
         public static bool ValidPhoneNumber(this string number)

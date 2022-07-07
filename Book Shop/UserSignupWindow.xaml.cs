@@ -26,39 +26,46 @@ namespace Book_Shop
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
-            //todo: check :
             string firstName = this.FirstNameTextbox.Text;
             string lastName = this.LastNameTextbox.Text;
             string email = this.EmailTextbox.Text;
-            string password = this.PasswordTextbox.Text;
+            string password = this.Passwrod_PasswordBox.Password;
+            string confirmation = this.Confrimation_PasswordBox.Password;
             string phoneNumber=this.PhoneNumberTextbox.Text;
 
+            string error = "Error: ";
             if (!firstName.ValidName())
             {
-                Global.MessageError("invalid first name!");
+                error += $"\n-Invalid First Name";
             }
-            else if (!lastName.ValidName())
+            if (!lastName.ValidName())
             {
-                Global.MessageError("invalid last name!");
+                error += "\n-Invalid Last Name!";
             }
-            else if (!email.ValidEmail())
+            if (!email.ValidEmail())
             {
-                Global.MessageError("invalid email!");
+                error += "\n-Email must be in the format of : x@y.z";
             }
-            else if (!phoneNumber.ValidPhoneNumber())
+            if (!phoneNumber.ValidPhoneNumber())
             {
-                Global.MessageError("invalid phone number!");
+                error += "\n-Phone Number must be in the format of: 09xxxxxxxxx";
             }
-            else if (!password.ValidPassword())
+            if (!password.ValidPassword())
             {
-                Global.MessageError("invalid password!");
+                error += "\n-Password must contain upper case and lower case and a number!";
             }
-            else
+            if (password != confirmation)
             {
-                User user = new User(firstName, lastName, password, email, phoneNumber);
-                UserDbManager.AddData(firstName, lastName, password, email, phoneNumber, 0);
-                Global.MessageInfo("new user added!");
+                error += "\n-Password and Confrimation don't match!!!";
             }
+            if (error != "Error: ")
+            {
+                Global.MessageError(error);
+                return;
+            }
+            UserDbManager.AddData(firstName, lastName, password, email,phoneNumber,0);
+            Global.MessageInfo("Sign Up Successful");
+            
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
@@ -66,6 +73,12 @@ namespace Book_Shop
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
+        }
+
+        private void PasswordTextbox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Passwrod_PasswordBox.PasswordChar = '*';
+            Confrimation_PasswordBox.PasswordChar = '*';
         }
     }
 }
