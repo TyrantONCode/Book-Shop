@@ -23,5 +23,21 @@ namespace Book_Shop
         {
             InitializeComponent();
         }
+
+        private void ConfirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            string username = UsernameTextbox.Text;
+            string password = PasswordTextbox.Text;
+            //todo: check if the username and password are valid with db
+
+            
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();   
+        }
     }
 }
