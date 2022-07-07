@@ -169,7 +169,10 @@ namespace Book_Shop
         }
         //todo: need a function for data base :
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> e298dedf9e9413a3fd84cce19cdc9edfa8d6add6
 
 }
 

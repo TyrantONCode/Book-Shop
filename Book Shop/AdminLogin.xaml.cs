@@ -30,6 +30,18 @@ namespace Book_Shop
 
             AdminWindow adminWindow = new AdminWindow();
             adminWindow.Show();
+            string username = UsernameTextbox.Text;
+            string password = PasswordTextbox.Text;
+            //todo: check if the username and password are valid with db
+
+            
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();   
         }
     }
 }
