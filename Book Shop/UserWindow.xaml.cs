@@ -25,5 +25,13 @@ namespace Book_Shop
         {
             InitializeComponent();
         }
+
+        private void ChargeConfirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            string cardNum = this.CardNumberTextbox1.Text+ this.CardNumberTextbox2.Text+ this.CardNumberTextbox3.Text+ this.CardNumberTextbox4.Text;
+            string ccv = this.CVV2Textbox.Text;
+            string year = this.ExpirationYearTextbox.Text;
+            string month = this.ExpirationMonthTextbox.Text;
+        }
     }
 }
