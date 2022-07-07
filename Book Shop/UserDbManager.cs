@@ -26,7 +26,7 @@ namespace Book_Shop
             string command = "select max(id) + 1 from [Table]";
             SqlCommand cmd = new SqlCommand(command, conn);
             int id = Convert.ToInt32(cmd.ExecuteScalar());
-            command = "insert into [Table] values ('" + id + "','" + firstname + "','" + lastname + "','" + password + "','" + email + "','" + phone + "','" + money + "','"+books+"')";
+            command = "insert into [Table] values ('" + id + "','" + firstname + "','" + lastname + "','" + password + "','" + email + "','" + phone + "','" + money + "','" + books + "')";
             cmd = new SqlCommand(command, conn);
             cmd.ExecuteNonQuery();
             conn.Close();

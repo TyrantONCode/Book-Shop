@@ -29,8 +29,8 @@ namespace Book_Shop
             string firstName = this.FirstNameTextbox.Text;
             string lastName = this.LastNameTextbox.Text;
             string email = this.EmailTextbox.Text;
-            string password = this.PasswordTextbox.Text;
-            string confirmation = this.PasswordConfirmationTextbox.Text;
+            string password = this.Passwrod_PasswordBox.Password;
+            string confirmation = this.Confrimation_PasswordBox.Password;
             string phoneNumber=this.PhoneNumberTextbox.Text;
 
             string error = "Error: ";
@@ -73,6 +73,12 @@ namespace Book_Shop
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
+        }
+
+        private void PasswordTextbox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Passwrod_PasswordBox.PasswordChar = '*';
+            Confrimation_PasswordBox.PasswordChar = '*';
         }
     }
 }
