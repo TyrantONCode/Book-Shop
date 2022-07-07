@@ -65,6 +65,26 @@
             </TabItem>
             <TabItem Margin="19,-5,-15,-1" Header="EDIT INFO" >
                 <Grid>
+                    <TextBlock Text="NEW FIRST NAME: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-41,34,0,0" Height="34" Width="256" TextAlignment="Center" FontSize="14"/>
+                    <TextBox x:Name="NewFirstNameTextbox" HorizontalAlignment="Center" VerticalAlignment="Top" Width="334" Margin="0,52,0,0" Height="31"/>
+
+                    <TextBlock Text="NEW LAST NAME: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-41,101,0,0" Height="34" Width="256" TextAlignment="Center" FontSize="14"/>
+                    <TextBox x:Name="NewLastNameTextbox" HorizontalAlignment="Center" VerticalAlignment="Top" Width="334" Margin="0,122,0,0" Height="31"/>
+
+                    <TextBlock Text="NEW PHONE NUMBER: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-23,184,0,0" Height="34" Width="256" TextAlignment="Center" FontSize="14"/>
+                    <TextBox x:Name="NewPhoneNumberTextbox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="334" Height="32" Margin="33,202,0,0" Grid.ColumnSpan="2"/>
+
+                    <TextBlock Text="NEW EMAIL: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-56,254,0,0" Height="34" Width="256" TextAlignment="Center" FontSize="14"/>
+                    <TextBox x:Name="NewEmailTextbox" HorizontalAlignment="Left" VerticalAlignment="Center" Width="334" Margin="33,0,0,0" Height="32"/>
+
+                    <TextBlock Text="NEW PASSWORD   : " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-34,319,0,0" Height="34" Width="256" TextAlignment="Center" FontSize="14"/>
+                    <PasswordBox x:Name="NewPasswrod_PasswordBox" Margin="33,338,33,209"/>
+
+                    <TextBlock x:Name="NewPassowrd_confirmation_textblock" Text="PASSWORD CONFIRMATION: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,388,0,0" Height="34" Width="256" TextAlignment="Center" FontSize="14"/>
+                    <PasswordBox x:Name="NewConfrimation_PasswordBox" Margin="33,405,33,139"/>
+
+                    <Button x:Name="EditInfoConfirmButton" Content="CONFIRM" HorizontalAlignment="Left" Margin="155,522,0,0" VerticalAlignment="Top" Height="31" Width="78" Click="EditInfoConfirmButton_Click"/>
+
 
                 </Grid>
             </TabItem>
