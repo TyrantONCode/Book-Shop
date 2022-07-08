@@ -41,9 +41,12 @@ namespace Book_Shop
                 Global.MessageInfo("Logged in successfully!");
                 userWindow.Show();
                 this.Close();
-                return;
+                //return;
             }
-            Global.MessageError("Invalid email or password!!");
+            else
+            {
+                Global.MessageError("Invalid email or password!!");
+            }
         }
     }
 }
