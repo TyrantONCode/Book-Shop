@@ -24,6 +24,23 @@ namespace Book_Shop
         public UserWindow()
         {
             InitializeComponent();
+            int[] bookIds=UserDbManager.FavBookIdList(UserLoginWindow.ID);
+            List<Book> books = new List<Book>();
+            BookmarksControl.ItemsSource = books;
+
+            for (int i = 0; i < bookIds.Length; i++)
+            {
+                string name;
+                string writer;
+                int publishYear;
+                string description;
+                float price;
+                string imagePath;
+                //todo: fix it :
+                BookDbManager.ShowData(bookIds[i],out name,out writer,out publishYear,out description,out price,out imagePath);
+                books.Add(new Book() { name = name, writer = writer, publishYear = publishYear, info = description });
+            }
+
         }
 
         private void ChargeConfirmButton_Click(object sender, RoutedEventArgs e)

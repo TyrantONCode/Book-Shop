@@ -40,6 +40,31 @@ namespace Book_Shop
             string ccv2 = this.CVV2Textbox.Text;
             string year = this.ExpirationYearTextbox.Text;
             string month = this.ExpirationMonthTextbox.Text;
+            double deposit = double.Parse(MoneyTextbox.Text);
+            string error = "Error: ";
+            if (!EMethods.ValidCreditCardNumber(cardNum))
+            {
+                error += "\n-Invalid credit card number!!!";
+            }
+            if (!EMethods.ValidCVV(ccv2))
+            {
+                error += "\n-CVV2 must be a 3 or 4 digit number!!!";
+            }
+            if (EMethods.ValidExpirationDate(year, month))
+            {
+                error += "\n-This credit card has been expired!!!";
+            }
+            if (deposit <= 0)
+            {
+                error += "\n-Deposite value must be a positive number.";
+            }
+            if (error == "Error: ")
+            {
+                UserDbManager.ChargeWallet(UserLoginWindow.ID, deposit);
+                Global.MessageInfo($"{deposit}$ Successfully added to you wallet.");
+                return;
+            }
+            Global.MessageError(error);
         }
 
         private void AddBookConfirmButton_Click(object sender, RoutedEventArgs e)

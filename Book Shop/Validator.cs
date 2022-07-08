@@ -130,10 +130,16 @@ namespace Book_Shop
     {
         public int id;  
         public string name;
+        public string writer;
         public float price;
+        public int publishYear;
         public double score;
         public string info;
         public int numOfVotes;
+        public Book()
+        {
+
+        }
         public Book(string name, float price, double score, string info)
         {
             this.name = name;

@@ -69,9 +69,9 @@ namespace Book_Shop
             // Load content of file in a TextBlock
             if (result == true)
             {
-                textblock.Text = openFileDlg.FileName;
+               /* textblock.Text = openFileDlg.FileName;
                 Uri uri = new Uri(openFileDlg.FileName);
-                image.Source = new BitmapImage(uri);
+                image.Source = new BitmapImage(uri);*/
             }
             //FileStream fileStream = new FileStream($@"{F:\Elmos\AP\AP1}", FileMode.Open);
 
