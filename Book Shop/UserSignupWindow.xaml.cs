@@ -65,7 +65,10 @@ namespace Book_Shop
             }
             UserDbManager.AddData(firstName, lastName, password, email,phoneNumber,0);
             Global.MessageInfo("Sign Up Successful");
-            
+            //todo : specify which user has loged in,then open user ui
+            UserWindow userWindow = new UserWindow();
+            userWindow.Show();
+            this.Close();
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
