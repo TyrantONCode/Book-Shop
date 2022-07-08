@@ -43,10 +43,15 @@ namespace Book_Shop
             if (UserDbManager.UserLogin(email, password, out User_Id))
             {
                 // to do: user page open
+                UserWindow userWindow = new UserWindow();
+                userWindow.Show();      
                 Global.MessageInfo("Logged in successfully!");
-                return;
+                //return;
             }
-            Global.MessageError("Invalid email or password!!");
+            else
+            {
+                Global.MessageError("Invalid email or password!!");
+            }
         }
     }
 }

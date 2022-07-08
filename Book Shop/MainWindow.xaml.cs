@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,7 @@ namespace Book_Shop
     {
         public MainWindow()
         {
-
+            InitializeComponent();      
         }
 
         private void Confirm_Click(object sender, RoutedEventArgs e)
@@ -45,14 +46,36 @@ namespace Book_Shop
 
         private void UserButton_Click(object sender, RoutedEventArgs e)
         {
-           UserSignupOrLoginWindow window = new UserSignupOrLoginWindow(this);
+            UserSignupOrLoginWindow window = new UserSignupOrLoginWindow(this);
             this.IsEnabled = false;
             window.Show();
         }
 
         private void ManagerButton_Click(object sender, RoutedEventArgs e)
         {
-            //todo : open manager ui window
+            AdminLogin adminLogin = new AdminLogin();
+            adminLogin.Show();
+            this.Close();
+        }
+
+        private void B_Click(object sender, RoutedEventArgs e)
+        {
+            // Create OpenFileDialog
+            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
+
+            // Launch OpenFileDialog by calling ShowDialog method
+            Nullable<bool> result = openFileDlg.ShowDialog();
+            // Get the selected file name and display in a TextBox.
+            // Load content of file in a TextBlock
+            if (result == true)
+            {
+                textblock.Text = openFileDlg.FileName;
+                Uri uri = new Uri(openFileDlg.FileName);
+                image.Source = new BitmapImage(uri);
+            }
+            //FileStream fileStream = new FileStream($@"{F:\Elmos\AP\AP1}", FileMode.Open);
+
         }
     }
 }
+
