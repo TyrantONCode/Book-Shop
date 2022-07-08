@@ -16,7 +16,7 @@ namespace Book_Shop
         public static string connectionKey;
        
         public static void AddData(string firstname, string lastname,
-            string password, string email, string phone, float money)
+            string password, string email, string phone, float money, bool vip = false)
         {
             root = Path.GetFullPath("App_Data\\UserDataBase.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
             connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
@@ -27,7 +27,7 @@ namespace Book_Shop
             string command = "select max(id) + 1 from [Table]";
             SqlCommand cmd = new SqlCommand(command, conn);
             int id = Convert.ToInt32(cmd.ExecuteScalar());
-            command = "insert into [Table] values ('" + id + "','" + firstname + "','" + lastname + "','" + password + "','" + email + "','" + phone + "','" + money + "','" + books + "', '"+bought_books+"')";
+            command = "insert into [Table] values ('" + id + "','" + firstname + "','" + lastname + "','" + password + "','" + email + "','" + phone + "','" + money + "','" + books + "', '"+bought_books+"', '"+vip+"')";
             cmd = new SqlCommand(command, conn);
             cmd.ExecuteNonQuery();
             conn.Close();
