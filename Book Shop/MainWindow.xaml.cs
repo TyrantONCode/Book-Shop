@@ -67,10 +67,10 @@ namespace Book_Shop
             // Get the selected file name and display in a TextBox.
             // Load content of file in a TextBlock
             if (result == true)
-            {
+            {/*
                 textblock.Text = openFileDlg.FileName;
                 Uri uri = new Uri(openFileDlg.FileName);
-                image.Source = new BitmapImage(uri);
+                image.Source = new BitmapImage(uri);*/
             }
             //FileStream fileStream = new FileStream($@"{path_textblock.Text}", FileMode.Open);
 

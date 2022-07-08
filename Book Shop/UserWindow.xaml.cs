@@ -53,5 +53,11 @@ namespace Book_Shop
                 mainWindow.Show();
             }
         }
+
+        private void TabItem_MouseEnter(object sender, MouseEventArgs e)
+        {
+         // UserDbManager.FavBookIdList(UserLoginWindow.ID);
+
+        }
     }
 }

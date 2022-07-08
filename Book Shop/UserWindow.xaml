@@ -17,28 +17,32 @@
             TabStripPlacement="Top" Background=" #fffded  ">
             <TabItem Margin="-1,-3,6,-3"  Header="CHARGE ">
                 <Grid >
-                    <TextBlock  FontSize="12"  HorizontalAlignment="Left" Margin="18,45,0,0" TextWrapping="Wrap" Text="CARD NUMBER :" VerticalAlignment="Top" Width="106"/>
-                    <TextBox x:Name="CardNumberTextbox1"  FontSize="12" HorizontalAlignment="Left" Margin="20,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Height="23"/>
-                    <TextBox x:Name="CardNumberTextbox2"  FontSize="12" HorizontalAlignment="Left" Margin="112,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Height="23"/>
-                    <TextBox x:Name="CardNumberTextbox3"  FontSize="12" HorizontalAlignment="Left" Margin="204,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Height="23"/>
-                    <TextBox x:Name="CardNumberTextbox4"  FontSize="12" HorizontalAlignment="Left" Margin="296,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Height="23"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="34*"/>
+                        <ColumnDefinition Width="163*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock  FontSize="12"  HorizontalAlignment="Left" Margin="18,45,0,0" TextWrapping="Wrap" Text="CARD NUMBER :" VerticalAlignment="Top" Width="106" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="CardNumberTextbox1"  FontSize="12" HorizontalAlignment="Left" Margin="20,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Height="23" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="CardNumberTextbox2"  FontSize="12" HorizontalAlignment="Left" Margin="44,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Height="23" Grid.Column="1"/>
+                    <TextBox x:Name="CardNumberTextbox3"  FontSize="12" HorizontalAlignment="Left" Margin="136,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Height="23" Grid.Column="1"/>
+                    <TextBox x:Name="CardNumberTextbox4"  FontSize="12" HorizontalAlignment="Left" Margin="228,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Height="23" Grid.Column="1"/>
 
 
 
 
-                    <TextBlock  FontSize="12"  HorizontalAlignment="Left" Margin="20,107,0,0" TextWrapping="Wrap" Text="CVV2 :" VerticalAlignment="Top" Width="105"/>
-                    <TextBox x:Name="CVV2Textbox"  FontSize="12" HorizontalAlignment="Left" Margin="20,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="167" Height="23"/>
+                    <TextBlock  FontSize="12"  HorizontalAlignment="Left" Margin="20,107,0,0" TextWrapping="Wrap" Text="CVV2 :" VerticalAlignment="Top" Width="105" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="CVV2Textbox"  FontSize="12" HorizontalAlignment="Left" Margin="20,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="167" Height="23" Grid.ColumnSpan="2"/>
 
-                    <TextBlock  FontSize="12"  HorizontalAlignment="Left" Margin="40,180,0,0" TextWrapping="Wrap" Text="Expiration Year :" VerticalAlignment="Top" Width="105"/>
-                    <TextBox x:Name="ExpirationYearTextbox"  FontSize="12" HorizontalAlignment="Left" Margin="40,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Height="23"/>
+                    <TextBlock  FontSize="12"  HorizontalAlignment="Left" Margin="40,180,0,0" TextWrapping="Wrap" Text="Expiration Year :" VerticalAlignment="Top" Width="105" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="ExpirationYearTextbox"  FontSize="12" HorizontalAlignment="Left" Margin="40,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Height="23" Grid.ColumnSpan="2"/>
 
-                    <TextBlock  FontSize="12"  HorizontalAlignment="Left" Margin="168,182,0,0" TextWrapping="Wrap" Text="Expiration Month :" VerticalAlignment="Top" Width="106"/>
-                    <TextBox x:Name="ExpirationMonthTextbox"  FontSize="12" HorizontalAlignment="Left" Margin="169,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Height="23"/>
+                    <TextBlock  FontSize="12"  HorizontalAlignment="Left" Margin="100,182,0,0" TextWrapping="Wrap" Text="Expiration Month :" VerticalAlignment="Top" Width="106" Grid.Column="1"/>
+                    <TextBox x:Name="ExpirationMonthTextbox"  FontSize="12" HorizontalAlignment="Left" Margin="101,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Height="23" Grid.Column="1"/>
 
-                    <TextBlock  FontSize="12"  HorizontalAlignment="Left" Margin="40,275,0,0" TextWrapping="Wrap" Text="DEPOSIT :" VerticalAlignment="Top" Width="105"/>
-                    <TextBox x:Name="MoneyTextbox"  FontSize="12" HorizontalAlignment="Left" Margin="40,296,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="167" Height="23"/>
+                    <TextBlock  FontSize="12"  HorizontalAlignment="Left" Margin="40,275,0,0" TextWrapping="Wrap" Text="DEPOSIT :" VerticalAlignment="Top" Width="105" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="MoneyTextbox"  FontSize="12" HorizontalAlignment="Left" Margin="40,296,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="167" Height="23" Grid.ColumnSpan="2"/>
 
-                    <Button x:Name="ChargeConfirmButton" Content="CONFIRM" HorizontalAlignment="Left" Margin="165,435,0,0" VerticalAlignment="Top" Height="25" Width="56" Click="ChargeConfirmButton_Click"/>
+                    <Button x:Name="ChargeConfirmButton" Content="CONFIRM" HorizontalAlignment="Left" Margin="97,435,0,0" VerticalAlignment="Top" Height="25" Width="56" Click="ChargeConfirmButton_Click" Grid.Column="1"/>
 
 
                 </Grid>
@@ -92,9 +96,23 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Margin="16,-5,-12,-1" Header="BOOKMARKS" >
+            <TabItem Margin="16,-5,-12,-1" Header="BOOKMARKS" MouseEnter="TabItem_MouseEnter" >
                 <Grid>
+                    <ItemsControl x:Name="BookmarksControl">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Image x:Name="Image" HorizontalAlignment="Left" Height="100" Margin="10,8,0,0" VerticalAlignment="Top" Width="100"/>
+                                    <TextBlock Text="{Binding }" x:Name="BookName" HorizontalAlignment="Left" Margin="118,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17" Width="55" FontSize="12"/>
+                                    <TextBlock x:Name="Auther" HorizontalAlignment="Left" Margin="118,32,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="17" Width="55" FontSize="12"/>
+                                    <TextBlock x:Name="PublishYear" HorizontalAlignment="Left" Margin="118,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17" Width="55" FontSize="12"/>
+                                    <TextBlock x:Name="ScoreTextblock"  HorizontalAlignment="Left" Margin="197,57,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="17" Width="55" FontSize="12"/>
+                                    <TextBlock x:Name="DiscriptionTextblock" HorizontalAlignment="Left" Margin="118,79,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="27" Width="272"/>
 
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </Grid>
             </TabItem>
         </TabControl>
