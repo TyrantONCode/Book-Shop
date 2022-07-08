@@ -11,6 +11,7 @@ namespace Book_Shop
 {
     internal class BookDbManager
     {
+        public static List<int> id_list = new List<int>();
         public static string root;
         public static string connectionKey;
         public static string imageRoot;
@@ -34,6 +35,7 @@ namespace Book_Shop
             {
                 id = 0;
             }
+            id_list.Add(id);
             command = "insert into [Table] values ('" + id + "','" + title + "','" + writer +"','" + publishYear + "','" + brief + "','" + cost + "','"+imagepath+", '"+pdfpath+"')";
             cmd = new SqlCommand(command, conn);
             cmd.ExecuteNonQuery();
