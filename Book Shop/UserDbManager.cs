@@ -186,7 +186,7 @@ namespace Book_Shop
 
 
         public static bool EditProfile(int id, string name = "", string lastname = "",
-            string email = "", string phone = "")
+            string email = "", string phone = "", string password = "")
         {
             root = Path.GetFullPath("App_Data\\UserDataBase.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
             connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
@@ -197,13 +197,15 @@ namespace Book_Shop
             SqlDataReader reader = cmd.ExecuteReader();
             string oldName = reader.GetString(1);
             string oldLastName = reader.GetString(2);
+            string oldPassword = reader.GetString(3);
             string oldEmail = reader.GetString(4);
             string oldPhone = reader.GetString(5);
             conn.Close();
             SqlConnection conn2 = new SqlConnection(connectionKey);
             conn2.Open();
             command = "update [Table] set firstname = '" + name == "" ? oldName : name + "', " +
-                "lastname = '" + lastname == "" ? oldLastName : lastname + "', " +
+                "lastname = '" + lastname == "" ? oldLastName : lastname + "'," +
+                "password = '"+password == "" ? oldPassword : password +"'," +
                 "email = '" + email == "" ? oldEmail : email + "', " +
                 "phone = '" + phone == "" ? oldPhone : phone + "' where id like '"+id+"'";
             cmd = new SqlCommand(command, conn2);
