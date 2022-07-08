@@ -41,7 +41,7 @@ namespace Book_Shop
         }
 
         public static bool ShowData(int id, out string title, out string writer,
-            out int publishyear,out string breif, out float cost, out string imagepath)
+            out int publishyear,out string breif, out float cost, out string imagepath, out string pdfpath)
         {
             root = Path.GetFullPath("App_Data\\UserDataBase.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
             connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
@@ -60,6 +60,7 @@ namespace Book_Shop
                 breif = reader.GetString(3);
                 cost = reader.GetFloat(4);
                 imagepath = reader.GetString(5);
+                pdfpath = reader.GetString(6);
             }
             else
             {
