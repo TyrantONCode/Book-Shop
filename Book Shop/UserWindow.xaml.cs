@@ -28,10 +28,35 @@ namespace Book_Shop
 
         private void ChargeConfirmButton_Click(object sender, RoutedEventArgs e)
         {
-            string cardNum = this.CardNumberTextbox1.Text+ this.CardNumberTextbox2.Text+ this.CardNumberTextbox3.Text+ this.CardNumberTextbox4.Text;
+            string cardNum = this.CardNumberTextbox1.Text + this.CardNumberTextbox2.Text + this.CardNumberTextbox3.Text + this.CardNumberTextbox4.Text;
             string ccv2 = this.CVV2Textbox.Text;
             string year = this.ExpirationYearTextbox.Text;
             string month = this.ExpirationMonthTextbox.Text;
+            double deposit = double.Parse(MoneyTextbox.Text);
+            string error = "Error: ";
+            if (!EMethods.ValidCreditCardNumber(cardNum))
+            {
+                error += "\n-Invalid credit card number!!!";
+            }
+            if (!EMethods.ValidCVV(ccv2))
+            {
+                error += "\n-CVV2 must be a 3 or 4 digit number!!!";
+            }
+            if (EMethods.ValidExpirationDate(year, month))
+            {
+                error += "\n-This credit card has been expired!!!";
+            }
+            if (deposit <= 0)
+            {
+                error += "\n-Deposite value must be a positive number.";
+            }
+            if (error == "Error: ")
+            {
+                UserDbManager.ChargeWallet(UserLoginWindow.ID, deposit);
+                Global.MessageInfo($"{deposit}$ Successfully added to you wallet.");
+                return;
+            }
+            Global.MessageError(error);
         }
 
         private void EditInfoConfirmButton_Click(object sender, RoutedEventArgs e)

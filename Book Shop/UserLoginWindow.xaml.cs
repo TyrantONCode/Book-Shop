@@ -19,6 +19,11 @@ namespace Book_Shop
     /// </summary>
     public partial class UserLoginWindow : Window
     {
+        public static int User_Id = -1;
+        public static int ID
+        {
+            get { return User_Id; }
+        }
         public UserLoginWindow()
         {
             InitializeComponent();
@@ -35,7 +40,7 @@ namespace Book_Shop
         {
             string email = this.EmailTextbox.Text;
             string password= this.PasswordTextbox.Text;
-            if (UserDbManager.UserLogin(email, password))
+            if (UserDbManager.UserLogin(email, password, out User_Id))
             {
                 // to do: user page open
                 Global.MessageInfo("Logged in successfully!");

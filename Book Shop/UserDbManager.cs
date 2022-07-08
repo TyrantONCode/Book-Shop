@@ -42,12 +42,13 @@ namespace Book_Shop
             SqlCommand cmd = new SqlCommand(command, conn);
             SqlDataReader reader = cmd.ExecuteReader();
             bool output = reader.Read();
-            conn.Close();
+            
             if (output)
             {
                 id = reader.GetInt32(0);
                 return true;
             }
+            conn.Close();
             id = -1;
             return false;
             
