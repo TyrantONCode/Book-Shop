@@ -13,9 +13,10 @@ namespace Book_Shop
     {
         public static string root;
         public static string connectionKey;
+        public static string imageRoot;
 
         public static void AddData(string title, string writer,
-            int publishYear, string brief, int phone, string money)
+            int publishYear, string brief, float cost, string imagepath)
         {
             root = Path.GetFullPath("App_Data\\BookDb.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
             connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
@@ -24,8 +25,16 @@ namespace Book_Shop
             conn.Open();
             string command = "select max(id) + 1 from [Table]";
             SqlCommand cmd = new SqlCommand(command, conn);
-            int id = Convert.ToInt32(cmd.ExecuteScalar());
-         //   command = "insert into [Table] values ('" + id + "','" + title + "','" + +"','" + password + "','" + email + "','" + phone + "','" + money + "','" + books + "')";
+            int id = 0;
+            try
+            {
+                id = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (InvalidCastException)
+            {
+                id = 0;
+            }
+            command = "insert into [Table] values ('" + id + "','" + title + "','" + writer +"','" + publishYear + "','" + brief + "','" + cost + "','"+imagepath+"')";
             cmd = new SqlCommand(command, conn);
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -73,6 +82,38 @@ namespace Book_Shop
             return favbookstring;
         }
 
+        public static bool ShowData(int id, out string title, out string writer,
+            out int publishyear,out string breif, out float cost, out string imagepath)
+        {
+            root = Path.GetFullPath("App_Data\\UserDataBase.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
+            connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
+            SqlConnection conn = new SqlConnection(connectionKey);
+            conn.Open();
+            string command = "select * from [Table] where id like '" + id + "'";
+            SqlCommand cmd = new SqlCommand(command, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            bool output = reader.Read();
+            conn.Close();
+            if (output)
+            {
+                title = reader.GetString(0);
+                writer = reader.GetString(1);
+                publishyear = reader.GetInt32(2);
+                breif = reader.GetString(3);
+                cost = reader.GetFloat(4);
+                imagepath = reader.GetString(5);
+            }
+            else
+            {
+                title = "";
+                writer = "";
+                publishyear = 0;
+                breif = "";
+                cost = 0;
+                imagepath = "";
+            }
+            return output;
+        }
 
         public static int[] FavBookIdList(string email)
         {

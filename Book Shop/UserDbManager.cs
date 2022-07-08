@@ -32,7 +32,7 @@ namespace Book_Shop
             conn.Close();
         }
 
-        public static bool UserLogin(string email, string password)
+        public static bool UserLogin(string email, string password, out int id)
         {
             root = Path.GetFullPath("App_Data\\UserDataBase.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
             connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
@@ -42,11 +42,19 @@ namespace Book_Shop
             SqlCommand cmd = new SqlCommand(command, conn);
             SqlDataReader reader = cmd.ExecuteReader();
             bool output = reader.Read();
+            
+            if (output)
+            {
+                id = reader.GetInt32(0);
+                return true;
+            }
             conn.Close();
-            return output;
+            id = -1;
+            return false;
+            
         }
 
-        public static bool ValidLoginEmail(string email)
+        public static bool ValidSignupEmail(string email)
         {
             root = Path.GetFullPath("App_Data\\UserDataBase.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
             connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
@@ -57,12 +65,21 @@ namespace Book_Shop
             SqlDataReader reader = cmd.ExecuteReader();
             bool output = reader.Read();
             conn.Close();
-            return output;
+            return !output;
         }
 
 
-        public static string AddFavBooks(string favbookstring, int book_id)
+        public static void AddFavBooks(int id, int book_id)
         {
+            root = Path.GetFullPath("App_Data\\UserDataBase.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
+            connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
+            SqlConnection conn = new SqlConnection(connectionKey);
+            conn.Open();
+            string command = "select * from [Table] where id like '" + id + "'";
+            SqlCommand cmd = new SqlCommand(command, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            string favbookstring = reader.GetString(7);
+            conn.Close();
             if (favbookstring.Length == 0)
             {
                 favbookstring += book_id;
@@ -71,17 +88,21 @@ namespace Book_Shop
             {
                 favbookstring += $" {book_id}";
             }
-            return favbookstring;
+            SqlConnection conn2 = new SqlConnection(connectionKey);
+            command = "update [Table] set favebooks = '" + favbookstring + "' where id like '"+id+"'";
+            cmd = new SqlCommand(command, conn2);
+            cmd.ExecuteNonQuery();
+            conn2.Close();
         }
 
 
-        public static int[] FavBookIdList(string email)
+        public static int[] FavBookIdList(int id)
         {
             root = Path.GetFullPath("App_Data\\UserDataBase.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
             connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
             SqlConnection conn = new SqlConnection(connectionKey);
             conn.Open();
-            string command = "select * from [Table] where email like '" + email + "'";
+            string command = "select * from [Table] where id like '" + id + "'";
             SqlCommand cmd = new SqlCommand(command, conn);
             SqlDataReader reader = cmd.ExecuteReader();
             string[] favbooks = reader.GetString(7).Split();
@@ -93,6 +114,109 @@ namespace Book_Shop
             }
             return output;
         }
+
+
+        public static void RemoveFavBook(int id, int book_id)
+        {
+            root = Path.GetFullPath("App_Data\\UserDataBase.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
+            connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
+            SqlConnection conn = new SqlConnection(connectionKey);
+            conn.Open();
+            string command = "select * from [Table] where id like '" + id + "'";
+            SqlCommand cmd = new SqlCommand(command, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            string favbookstring = reader.GetString(7);
+            conn.Close();
+            string[] books = favbookstring.Split();
+            List<string> newbooks = new List<string>();
+            foreach (string book in books)
+            {
+                if (book != book_id.ToString())
+                {
+                    newbooks.Add(book);
+                }
+            }
+            favbookstring = "";
+            for (int i = 0; i < newbooks.Count; i++)
+            {
+                if (i == 0)
+                {
+                    favbookstring += newbooks[0];
+                }
+                else
+                {
+                    favbookstring += $" {newbooks[i]}";
+                }
+            }
+            SqlConnection conn2 = new SqlConnection(connectionKey);
+            command = "update [Table] set favebooks = '" + favbookstring + "' where id like '" + id + "'";
+            cmd = new SqlCommand(command, conn2);
+            cmd.ExecuteNonQuery();
+            conn2.Close();
+        }
+
+
+        public static bool ChargeWallet(int id, double amount)
+        {
+            root = Path.GetFullPath("App_Data\\UserDataBase.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
+            connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
+            SqlConnection conn = new SqlConnection(connectionKey);
+            conn.Open();
+            string command = "select * from [Table] where id like '" + id + "'";
+            SqlCommand cmd = new SqlCommand(command, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            bool output = reader.Read();
+            double money = amount;
+            if (output && money + reader.GetDouble(6) > 0)
+            {
+                money += reader.GetDouble(6);
+                SqlConnection conn2 = new SqlConnection(connectionKey);
+                conn2.Open();
+                command = "update [Table] set money = '" + money + "' where id like '" + id + "'";
+                cmd = new SqlCommand(command, conn2);
+                cmd.ExecuteNonQuery();
+                conn2.Close();
+                return true;
+            }
+            conn.Close();
+            return false;
+            
+            
+        }
+
+
+        public static bool EditProfile(int id, string name = "", string lastname = "",
+            string email = "", string phone = "")
+        {
+            root = Path.GetFullPath("App_Data\\UserDataBase.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
+            connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
+            SqlConnection conn = new SqlConnection(connectionKey);
+            conn.Open();
+            string command = "select * from [Table] where id like '" + id + "'";
+            SqlCommand cmd = new SqlCommand(command, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            string oldName = reader.GetString(1);
+            string oldLastName = reader.GetString(2);
+            string oldEmail = reader.GetString(4);
+            string oldPhone = reader.GetString(5);
+            conn.Close();
+            SqlConnection conn2 = new SqlConnection(connectionKey);
+            conn2.Open();
+            command = "update [Table] set firstname = '" + name == "" ? oldName : name + "', " +
+                "lastname = '" + lastname == "" ? oldLastName : lastname + "', " +
+                "email = '" + email == "" ? oldEmail : email + "', " +
+                "phone = '" + phone == "" ? oldPhone : phone + "' where id like '"+id+"'";
+            cmd = new SqlCommand(command, conn2);
+            cmd.ExecuteNonQuery();
+            conn2.Close();
+            if (name == "" && lastname == "" && phone == "" && email == "")
+            {
+                return false;
+            }
+            return true;
+        }
+
+
     }
 
 }

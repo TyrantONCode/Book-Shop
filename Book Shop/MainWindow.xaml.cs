@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -67,12 +68,12 @@ namespace Book_Shop
             // Get the selected file name and display in a TextBox.
             // Load content of file in a TextBlock
             if (result == true)
-            {/*
+            {
                 textblock.Text = openFileDlg.FileName;
                 Uri uri = new Uri(openFileDlg.FileName);
-                image.Source = new BitmapImage(uri);*/
+                image.Source = new BitmapImage(uri);
             }
-            //FileStream fileStream = new FileStream($@"{path_textblock.Text}", FileMode.Open);
+            //FileStream fileStream = new FileStream($@"{F:\Elmos\AP\AP1}", FileMode.Open);
 
         }
     }

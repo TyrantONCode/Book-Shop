@@ -58,6 +58,10 @@ namespace Book_Shop
             {
                 error += "\n-Password and Confrimation don't match!!!";
             }
+            if (!UserDbManager.ValidSignupEmail(email))
+            {
+                error += "\n-This email already exits!!";
+            }
             if (error != "Error: ")
             {
                 Global.MessageError(error);
