@@ -11,7 +11,7 @@ namespace Book_Shop
 {
     internal class UserDbManager
     {
-
+        public static List<int> Id_list = new List<int>();
         public static string root;
         public static string connectionKey;
        
@@ -26,7 +26,16 @@ namespace Book_Shop
             conn.Open();
             string command = "select max(id) + 1 from [Table]";
             SqlCommand cmd = new SqlCommand(command, conn);
-            int id = Convert.ToInt32(cmd.ExecuteScalar());
+            int id = 0;
+            try
+            {
+                id = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (InvalidCastException)
+            {
+                id = 0;
+            }
+            Id_list.Add(id);
             command = "insert into [Table] values ('" + id + "','" + firstname + "','" + lastname + "','" + password + "','" + email + "','" + phone + "','" + money + "','" + books + "', '"+bought_books+"', '"+vip+"')";
             cmd = new SqlCommand(command, conn);
             cmd.ExecuteNonQuery();
