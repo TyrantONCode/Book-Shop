@@ -59,7 +59,7 @@ namespace Book_Shop
             {
                 error += "\n-CVV2 must be a 3 or 4 digit number!!!";
             }
-            if (EMethods.ValidExpirationDate(year, month))
+            if (!EMethods.ValidExpirationDate(year, month))
             {
                 error += "\n-This credit card has been expired!!!";
             }
@@ -81,9 +81,44 @@ namespace Book_Shop
             string firstName=this.NewFirstNameTextbox.Text;
             string lastName=this.NewLastNameTextbox.Text;
             string email=this.NewEmailTextbox.Text;
+            string phone = this.NewPhoneNumberTextbox.Text;
+            string password = this.NewPasswrod_PasswordBox.Password;
+            string confirmation = this.NewConfrimation_PasswordBox.Password;
+            string error = "Error: ";
+            if (!EMethods.ValidName(firstName) && firstName != "")
+            {
+                error += "\n-Invalid fitsname!!!";
+            }
+            if (!EMethods.ValidName(lastName) && lastName != "")
+            {
+                error += "\n-Invalid lastname!!!";
+            }
+            if (!EMethods.ValidEmail(email) && email != "")
+            {
+                error += "\n-Invalid email format.Email must be in the format of x@y.z";
+            }
+            if (!EMethods.ValidPhoneNumber(phone) && phone != "")
+            {
+                error += "\n-Invalid phone number. Phone number must be in the format of 09xxxxxxxxx";
+            }
+            if (!EMethods.ValidPassword(password) && password != "")
+            {
+                error += "\n-Password must contain at least one lower case, one upper case and a nubmer";
+            }
+            if (password != confirmation && confirmation != "")
+            {
+                error += "\n-Password and Confrimation does not match";
+            }
+            if (error == "Error: ")
+            {
+                UserDbManager.EditProfile(UserLoginWindow.ID, firstName, lastName, email, phone, password);
+                Global.MessageInfo("Profile editted successfully.");
+                return;
+            }
+            Global.MessageError(error);
            //todo :
             //string password = this.NewPasswrod_PasswordBox.Text;
-            string confirmPassword = this.NewPassowrd_confirmation_textblock.Text;
+            //string confirmPassword = this.NewPassowrd_confirmation_textblock.Text;
         }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)

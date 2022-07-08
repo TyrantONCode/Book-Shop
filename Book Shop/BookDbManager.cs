@@ -16,7 +16,7 @@ namespace Book_Shop
         public static string imageRoot;
 
         public static void AddData(string title, string writer,
-            int publishYear, string brief, float cost, string imagepath)
+            int publishYear, string brief, float cost, string imagepath,string pdfpath)
         {
             root = Path.GetFullPath("App_Data\\BookDb.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
             connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
@@ -34,7 +34,7 @@ namespace Book_Shop
             {
                 id = 0;
             }
-            command = "insert into [Table] values ('" + id + "','" + title + "','" + writer +"','" + publishYear + "','" + brief + "','" + cost + "','"+imagepath+"')";
+            command = "insert into [Table] values ('" + id + "','" + title + "','" + writer +"','" + publishYear + "','" + brief + "','" + cost + "','"+imagepath+", '"+pdfpath+"')";
             cmd = new SqlCommand(command, conn);
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -83,7 +83,7 @@ namespace Book_Shop
         }
 
         public static bool ShowData(int id, out string title, out string writer,
-            out int publishyear,out string breif, out float cost, out string imagepath)
+            out int publishyear,out string breif, out float cost, out string imagepath, out string pdfpath)
         {
             root = Path.GetFullPath("App_Data\\UserDataBase.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
             connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
@@ -102,6 +102,7 @@ namespace Book_Shop
                 breif = reader.GetString(3);
                 cost = reader.GetFloat(4);
                 imagepath = reader.GetString(5);
+                pdfpath = reader.GetString(6);
             }
             else
             {
