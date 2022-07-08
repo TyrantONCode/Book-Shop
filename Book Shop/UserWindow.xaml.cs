@@ -43,5 +43,15 @@ namespace Book_Shop
             //string password = this.NewPasswrod_PasswordBox.Text;
             string confirmPassword = this.NewPassowrd_confirmation_textblock.Text;
         }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Global.MessageConfirm("Are you sure?"))
+            {
+                MainWindow mainWindow = new MainWindow();
+                this.Close();
+                mainWindow.Show();
+            }
+        }
     }
 }

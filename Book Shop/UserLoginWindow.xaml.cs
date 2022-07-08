@@ -37,8 +37,10 @@ namespace Book_Shop
             string password= this.PasswordTextbox.Text;
             if (UserDbManager.UserLogin(email, password))
             {
-                // to do: user page open
+                UserWindow userWindow = new UserWindow();
                 Global.MessageInfo("Logged in successfully!");
+                userWindow.Show();
+                this.Close();
                 return;
             }
             Global.MessageError("Invalid email or password!!");

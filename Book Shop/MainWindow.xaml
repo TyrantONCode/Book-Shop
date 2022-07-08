@@ -16,6 +16,9 @@
         <Button Foreground="Red" Background=" White " Content="X" x:Name="ExitButton"  HorizontalAlignment="Left" Margin="379,2,0,0" VerticalAlignment="Top" Width="20" Click="ExitButton_Click"/>
         <TextBlock Text="LOGIN TYPE " HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,109,0,0" Height="34" Width="256" TextAlignment="Center" FontSize="24"/>
         <Button x:Name="UserButton" Content="USER" HorizontalAlignment="Left" Margin="88,258,0,0" VerticalAlignment="Top" Height="42" Width="71" Click="UserButton_Click"/>
+        <Button x:Name="B" Content="Button" HorizontalAlignment="Left" Margin="238,442,0,0" VerticalAlignment="Top" Click="B_Click"/>
+        <TextBlock x:Name="textblock" HorizontalAlignment="Left" Margin="267,378,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="40" Width="74"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="88,344,0,0" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Window>

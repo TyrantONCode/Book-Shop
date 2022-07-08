@@ -56,5 +56,25 @@ namespace Book_Shop
             adminLogin.Show();
             this.Close();
         }
+
+        private void B_Click(object sender, RoutedEventArgs e)
+        {
+            // Create OpenFileDialog
+            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
+
+            // Launch OpenFileDialog by calling ShowDialog method
+            Nullable<bool> result = openFileDlg.ShowDialog();
+            // Get the selected file name and display in a TextBox.
+            // Load content of file in a TextBlock
+            if (result == true)
+            {
+                textblock.Text = openFileDlg.FileName;
+                Uri uri = new Uri(openFileDlg.FileName);
+                image.Source = new BitmapImage(uri);
+            }
+            //FileStream fileStream = new FileStream($@"{path_textblock.Text}", FileMode.Open);
+
+        }
     }
 }
+

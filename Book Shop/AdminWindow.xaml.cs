@@ -23,5 +23,58 @@ namespace Book_Shop
         {
             InitializeComponent();
         }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Global.MessageConfirm("Are you sure?"))
+            {
+                MainWindow mainWindow = new MainWindow();
+                this.Close();
+                mainWindow.Show();
+            }
+        }
+
+        private void ChargeConfirmButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddBookConfirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            string bookName = this.BookNameTextbox.Text;
+            string author = this.AuthorNameTextbox.Text;
+            string description = this.Descriptiontextbox.Text;
+            int publishYear=0;
+            float price = 0;
+          // todo:   Point point =this.Descriptiontextbox.TransformToAncestor
+            try
+            {
+                price = float.Parse(this.PriceTextbox.Text);
+            }
+            catch
+            {
+                Global.MessageError("invalid price!");
+            }
+            try
+            {
+                publishYear = int.Parse(this.PublishYearTextbox.Text);
+            }
+            catch
+            {
+                Global.MessageError("invalid publish year!");
+            }
+            if(publishYear <= 0)
+            {
+                Global.MessageError("invalid publish year!");
+            }
+            else if(price <= 0)
+            {
+                Global.MessageError("invalid price!");
+            }
+            else
+            {
+                //todo: add to db
+            }
+        }
     }
 }

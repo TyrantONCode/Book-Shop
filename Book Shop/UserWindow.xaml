@@ -50,6 +50,10 @@
             </TabItem>
             <TabItem Margin="15,-3,-16,-3" Header="BOUGHT BOOKS" >
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="179*"/>
+                        <ColumnDefinition Width="215*"/>
+                    </Grid.ColumnDefinitions>
 
                 </Grid>
             </TabItem>
@@ -94,5 +98,6 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <Button x:Name="LogoutButton" Content="LOGOUT" HorizontalAlignment="Left" Margin="339,570,0,0" VerticalAlignment="Top" Click="LogoutButton_Click"/>
     </Grid>
 </Window>
