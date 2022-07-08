@@ -41,7 +41,7 @@ namespace Book_Shop
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
-            this.Close();   
+            this.Close();
         }
     }
 }

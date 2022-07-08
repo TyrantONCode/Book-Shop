@@ -23,7 +23,7 @@ namespace Book_Shop
     {
         public MainWindow()
         {
-
+            InitializeComponent();      
         }
 
         private void Confirm_Click(object sender, RoutedEventArgs e)
@@ -45,14 +45,16 @@ namespace Book_Shop
 
         private void UserButton_Click(object sender, RoutedEventArgs e)
         {
-           UserSignupOrLoginWindow window = new UserSignupOrLoginWindow(this);
+            UserSignupOrLoginWindow window = new UserSignupOrLoginWindow(this);
             this.IsEnabled = false;
             window.Show();
         }
 
         private void ManagerButton_Click(object sender, RoutedEventArgs e)
         {
-            //todo : open manager ui window
+            AdminLogin adminLogin = new AdminLogin();
+            adminLogin.Show();
+            this.Close();
         }
     }
 }
