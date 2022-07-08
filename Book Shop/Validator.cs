@@ -136,6 +136,7 @@ namespace Book_Shop
         public double score;
         public string info;
         public int numOfVotes;
+        public string 
         public Book()
         {
 

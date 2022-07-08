@@ -36,8 +36,10 @@ namespace Book_Shop
                 string description;
                 float price;
                 string imagePath;
+                string pdfPath;
                 //todo: fix it :
-                BookDbManager.ShowData(bookIds[i],out name,out writer,out publishYear,out description,out price,out imagePath);
+                BookDbManager.ShowData(bookIds[i],out name,out writer,out publishYear,out description,out price,out imagePath,
+                    out pdfPath);
                 books.Add(new Book() { name = name, writer = writer, publishYear = publishYear, info = description });
             }
 
@@ -134,6 +136,19 @@ namespace Book_Shop
         private void TabItem_MouseEnter(object sender, MouseEventArgs e)
         {
          // UserDbManager.FavBookIdList(UserLoginWindow.ID);
+
+        }
+
+        private void VipTab_KeyDown(object sender, KeyEventArgs e)
+        {
+            //todo : if the user is vip :
+            BuyVip.Visibility =Visibility.Collapsed;
+            BuyVipBooks.Visibility = Visibility.Visible;
+
+
+            //todo: if the user is not vip:
+            BuyVipBooks.Visibility =Visibility.Collapsed;
+            BuyVip.Visibility = Visibility.Visible;
 
         }
     }

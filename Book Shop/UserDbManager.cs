@@ -11,23 +11,33 @@ namespace Book_Shop
 {
     internal class UserDbManager
     {
-
+        public static List<int> Id_list = new List<int>();
         public static string root;
         public static string connectionKey;
        
         public static void AddData(string firstname, string lastname,
-            string password, string email, string phone, float money)
+            string password, string email, string phone, float money, bool vip = false)
         {
             root = Path.GetFullPath("App_Data\\UserDataBase.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
             connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
             SqlConnection conn = new SqlConnection(connectionKey);
             string books = "";
             string bought_books = "";
+            string basket = "";
             conn.Open();
             string command = "select max(id) + 1 from [Table]";
             SqlCommand cmd = new SqlCommand(command, conn);
-            int id = Convert.ToInt32(cmd.ExecuteScalar());
-            command = "insert into [Table] values ('" + id + "','" + firstname + "','" + lastname + "','" + password + "','" + email + "','" + phone + "','" + money + "','" + books + "', '"+bought_books+"')";
+            int id = 0;
+            try
+            {
+                id = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (InvalidCastException)
+            {
+                id = 0;
+            }
+            Id_list.Add(id);
+            command = "insert into [Table] values ('" + id + "','" + firstname + "','" + lastname + "','" + password + "','" + email + "','" + phone + "','" + money + "','" + books + "', '"+bought_books+"', '"+basket+"', '"+vip+"')";
             cmd = new SqlCommand(command, conn);
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -109,10 +119,15 @@ namespace Book_Shop
             string[] favbooks = reader.GetString(7).Split();
             conn.Close();
             int[] output = new int[favbooks.Length];
-            for (int i = 0; i < favbooks.Length; i++)
+            output[0] = -1;
+            if (favbooks[0] != "")
             {
-                output[i] = int.Parse(favbooks[i]);
+                for (int i = 0; i < favbooks.Length; i++)
+                {
+                    output[i] = int.Parse(favbooks[i]);
+                }
             }
+            
             return output;
         }
 
@@ -195,10 +210,15 @@ namespace Book_Shop
             string[] boughtbooks = reader.GetString(8).Split();
             conn.Close();
             int[] output = new int[boughtbooks.Length];
-            for (int i = 0; i < boughtbooks.Length; i++)
+            output[0] = -1;
+            if (boughtbooks[0] != "")
             {
-                output[i] = int.Parse(boughtbooks[i]);
+                for (int i = 0; i < boughtbooks.Length; i++)
+                {
+                    output[i] = int.Parse(boughtbooks[i]);
+                }
             }
+            
             return output;
         }
 
@@ -241,6 +261,99 @@ namespace Book_Shop
             cmd.ExecuteNonQuery();
             conn2.Close();
         }
+
+
+        public static void AddToBaseket(int id, int book_id)
+        {
+            root = Path.GetFullPath("App_Data\\UserDataBase.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
+            connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
+            SqlConnection conn = new SqlConnection(connectionKey);
+            conn.Open();
+            string command = "select * from [Table] where id like '" + id + "'";
+            SqlCommand cmd = new SqlCommand(command, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            string boughtbooks = reader.GetString(9);
+            conn.Close();
+            if (boughtbooks.Length == 0)
+            {
+                boughtbooks += book_id;
+            }
+            else
+            {
+                boughtbooks += $" {book_id}";
+            }
+            SqlConnection conn2 = new SqlConnection(connectionKey);
+            command = "update [Table] set boughtbooks = '" + boughtbooks + "' where id like '" + id + "'";
+            cmd = new SqlCommand(command, conn2);
+            cmd.ExecuteNonQuery();
+            conn2.Close();
+        }
+
+
+        public static int[] BasketBookIdList(int id)
+        {
+            root = Path.GetFullPath("App_Data\\UserDataBase.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
+            connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
+            SqlConnection conn = new SqlConnection(connectionKey);
+            conn.Open();
+            string command = "select * from [Table] where id like '" + id + "'";
+            SqlCommand cmd = new SqlCommand(command, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            string[] basket = reader.GetString(9).Split();
+            conn.Close();
+            int[] output = new int[basket.Length];
+            output[0] = -1;
+            if (basket[0] != "")
+            {
+                for (int i = 0; i < basket.Length; i++)
+                {
+                    output[i] = int.Parse(basket[i]);
+                }
+            }
+            
+            return output;
+        }
+
+
+        public static void RemoveFormBasket(int id, int book_id)
+        {
+            root = Path.GetFullPath("App_Data\\UserDataBase.mdf").ToString().Replace(@"Book Shop\bin\Debug\net6.0-windows\", "");
+            connectionKey = @$"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={root};Integrated Security=True;Connect Timeout=30";
+            SqlConnection conn = new SqlConnection(connectionKey);
+            conn.Open();
+            string command = "select * from [Table] where id like '" + id + "'";
+            SqlCommand cmd = new SqlCommand(command, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            string basket = reader.GetString(9);
+            conn.Close();
+            string[] books = basket.Split();
+            List<string> newbooks = new List<string>();
+            foreach (string book in books)
+            {
+                if (book != book_id.ToString())
+                {
+                    newbooks.Add(book);
+                }
+            }
+            basket = "";
+            for (int i = 0; i < newbooks.Count; i++)
+            {
+                if (i == 0)
+                {
+                    basket += newbooks[0];
+                }
+                else
+                {
+                    basket += $" {newbooks[i]}";
+                }
+            }
+            SqlConnection conn2 = new SqlConnection(connectionKey);
+            command = "update [Table] set boughtbooks = '" + basket + "' where id like '" + id + "'";
+            cmd = new SqlCommand(command, conn2);
+            cmd.ExecuteNonQuery();
+            conn2.Close();
+        }
+
 
 
         public static bool ChargeWallet(int id, double amount)

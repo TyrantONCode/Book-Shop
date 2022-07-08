@@ -42,17 +42,12 @@ namespace Book_Shop
             string password= this.PasswordTextbox.Text;
             if (UserDbManager.UserLogin(email, password, out User_Id))
             {
-<<<<<<< HEAD
                 UserWindow userWindow = new UserWindow();
                 Global.MessageInfo("Logged in successfully!");
                 userWindow.Show();
                 this.Close();
-=======
                 // to do: user page open
-                UserWindow userWindow = new UserWindow();
-                userWindow.Show();      
-                Global.MessageInfo("Logged in successfully!");
->>>>>>> 3b18ed1ef4fb9d7a0b4e695e02af95973100d8ff
+               
                 //return;
             }
             else
