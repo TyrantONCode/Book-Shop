@@ -25,5 +25,23 @@ namespace Book_Shop
         {
             InitializeComponent();
         }
+
+        private void ChargeConfirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            string cardNum = this.CardNumberTextbox1.Text+ this.CardNumberTextbox2.Text+ this.CardNumberTextbox3.Text+ this.CardNumberTextbox4.Text;
+            string ccv2 = this.CVV2Textbox.Text;
+            string year = this.ExpirationYearTextbox.Text;
+            string month = this.ExpirationMonthTextbox.Text;
+        }
+
+        private void EditInfoConfirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            string firstName=this.NewFirstNameTextbox.Text;
+            string lastName=this.NewLastNameTextbox.Text;
+            string email=this.NewEmailTextbox.Text;
+           //todo :
+            //string password = this.NewPasswrod_PasswordBox.Text;
+            string confirmPassword = this.NewPassowrd_confirmation_textblock.Text;
+        }
     }
 }

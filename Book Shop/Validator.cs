@@ -43,6 +43,7 @@ namespace Book_Shop
             Regex CVVRegex = new Regex("^[0-9]{3,4}$");
             return CVVRegex.IsMatch(cvv);
         }
+
         public static bool ValidExpirationDate(string year, string month)
         {
             DateTime now = DateTime.Now;
@@ -69,7 +70,7 @@ namespace Book_Shop
                 return false;
             }
         }
-        // Luhn Algorithm:
+
         public static bool ValidCreditCardNumber(string number)
         {
             if (number.Length != 16)
@@ -127,6 +128,7 @@ namespace Book_Shop
     }
     public class Book
     {
+        public int id;  
         public string name;
         public float price;
         public double score;
@@ -161,7 +163,6 @@ namespace Book_Shop
         {
             return (MessageBox.Show(text, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes);
         }
-        //todo: need a function for data base :
     }
 
 }
