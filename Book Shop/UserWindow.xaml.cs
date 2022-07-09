@@ -34,7 +34,7 @@ namespace Book_Shop
                 string writer;
                 int publishYear;
                 string description;
-                float price;
+                double price;
                 string imagePath;
                 string pdfPath;
                 //todo: fix it :
@@ -135,8 +135,30 @@ namespace Book_Shop
 
         private void TabItem_MouseEnter(object sender, MouseEventArgs e)
         {
-         // UserDbManager.FavBookIdList(UserLoginWindow.ID);
-
+            int[] favBooks= UserDbManager.FavBookIdList(3);
+            string title;
+            string writer;
+            int publishYear;
+            string brief;
+            double cost;
+            double score;
+            string imagPath;
+            string pdfPath;
+            List<Book> books = new List<Book>();
+            foreach(int i in favBooks )
+            {
+                BookDbManager.ShowData(i, out title, out writer, out publishYear, out brief, out cost, out imagPath, out pdfPath);
+                Book book = new Book();
+                book.name = title;
+                book.writer = writer;
+                book.score = 0;
+                book.info = brief;
+                book.pdfPath = pdfPath;
+                book.imagPath = imagPath;
+                book.publishYear = publishYear;
+                books.Add(book);
+            }
+            DataContext = this;
         }
 
         private void VipTab_KeyDown(object sender, KeyEventArgs e)

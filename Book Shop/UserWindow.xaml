@@ -132,16 +132,16 @@
             <TabItem Margin="16,-5,-12,-1" Header="BOOKMARKS" MouseEnter="TabItem_MouseEnter" >
                 <Grid>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                        <ItemsControl x:Name="BookmarksControl">
+                        <ItemsControl ItemsSource="{Binding books}" x:Name="BookmarksControl">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
                                     <Image x:Name="Image" HorizontalAlignment="Left" Height="100" Margin="10,8,0,0" VerticalAlignment="Top" Width="100"/>
-                                    <TextBlock Text="{Binding }" x:Name="BookName" HorizontalAlignment="Left" Margin="118,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17" Width="55" FontSize="12"/>
-                                    <TextBlock x:Name="Auther" HorizontalAlignment="Left" Margin="118,32,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="17" Width="55" FontSize="12"/>
-                                    <TextBlock x:Name="PublishYear" HorizontalAlignment="Left" Margin="118,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17" Width="55" FontSize="12"/>
-                                    <TextBlock x:Name="ScoreTextblock"  HorizontalAlignment="Left" Margin="197,57,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="17" Width="55" FontSize="12"/>
-                                    <TextBlock x:Name="DiscriptionTextblock" HorizontalAlignment="Left" Margin="118,79,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="27" Width="272"/>
+                                    <TextBlock Text="{Binding name}" x:Name="BookName" HorizontalAlignment="Left" Margin="118,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17" Width="55" FontSize="12"/>
+                                    <TextBlock Text="{Binding writer}" x:Name="Auther" HorizontalAlignment="Left" Margin="118,32,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="17" Width="55" FontSize="12"/>
+                                    <TextBlock Text="{Binding publishYear}" x:Name="PublishYear" HorizontalAlignment="Left" Margin="118,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="17" Width="55" FontSize="12"/>
+                                    <TextBlock Text="{Binding score}" x:Name="ScoreTextblock"  HorizontalAlignment="Left" Margin="197,57,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="17" Width="55" FontSize="12"/>
+                                    <TextBlock Text="{Binding brief}" x:Name="DiscriptionTextblock" HorizontalAlignment="Left" Margin="118,79,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="27" Width="272"/>
 
                                 </Grid>
                             </DataTemplate>

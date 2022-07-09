@@ -128,15 +128,16 @@ namespace Book_Shop
     }
     public class Book
     {
-        public int id;  
-        public string name;
-        public string writer;
-        public float price;
-        public int publishYear;
-        public double score;
-        public string info;
-        public int numOfVotes;
-        public string 
+        public int id { get; set; } 
+        public string name { get; set; }
+        public string writer { get; set; }
+        public float price { get; set; }
+        public int publishYear { get; set; }
+        public double score { get; set; }
+        public string info { get; set; }
+        public int numOfVotes { get; set; }
+        public string imagPath { get; set; }
+        public string pdfPath { get; set; }
         public Book()
         {
 
